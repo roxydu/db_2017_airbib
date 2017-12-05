@@ -1,0 +1,25 @@
+{
+  "name": "db-sys-proj",
+  "version": "1.0.0",
+  "description": "This is going to be a RESTful API for the University of Iowa Database Systems 2017 Fall.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiyuhan/db_2017_airbib.git"
+  },
+  "keywords": [
+    "MySQL"
+  ],
+  "dependencies": {
+    "mysql": "^2.15.0"
+  },
+  "author": "jiyuhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiyuhan/db_2017_airbib/issues"
+  },
+  "homepage": "https://github.com/jiyuhan/db_2017_airbib#readme"
+}
