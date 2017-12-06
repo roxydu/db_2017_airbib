@@ -1,5 +1,5 @@
 $.ajaxSetup({'cache':true});
-var baseUrl = 'http://ec2-54-242-86-211.compute-1.amazonaws.com:4000/?';
+var baseUrl = 'https://ec2-54-242-86-211.compute-1.amazonaws.com:4000/?';
 
 var first = () => {
     var variable_one = document.getElementById('amenities_choice_one').value;
