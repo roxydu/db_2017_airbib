@@ -78,10 +78,18 @@ var second_catch = (data) => {
     $('#basket').html(html);
 }
 
-var onSearchingResult = () => {
-
+var third = () => {
+    var url = baseUrl + 'C' + '?' + 'third_catch';
+    console.log(url);
+    $.getScript(url);
 }
 
-var onBookingSuccessResult = () => {
-
+var third_catch = (data) => {
+    console.log(JSON.stringify(data));
+    var html = ' <table class="text-center" style="width:100%">';
+    data.forEach((datum)=>{
+        html += '<tr><th>' + datum.billAmount + '</th><th>' + datum.hostName + '</th></tr>';
+    });
+    html += '</table>';
+    $('#basket').html(html);
 }
