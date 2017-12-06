@@ -4,6 +4,8 @@
 
 ### Group Member: Ruoxi Du, Thomas Han, Wei Gui, Zujun Liu
 
+#### website link: http://jiyuhan.github.io/db_2017_airbnb
+
 ## Abstract
 
 We are to implement a database and provide a front-end website for querying data. The use case in our case is AirBnb, and we will be using MySQL database which is hosted on Amazon Web Services (AWS).
