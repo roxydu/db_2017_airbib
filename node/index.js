@@ -63,7 +63,7 @@ var queryFormation = (key, callback) => {
     // MAGIC HAPPENS HERE
 
     // mock query
-    var result = "SELECT * FROM `amenity`";
+    var result = "SELECT * FROM `Amenity`";
 
     // no error handling for now
     callback(null, result);
