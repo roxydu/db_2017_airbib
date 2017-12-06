@@ -40,21 +40,57 @@
             <div class="jumbotron" id="jumbo">
                 <div class="row">
                     <div class="col-md-4">
-						<h2>Search homes around you</h2>
+						<h2>Analytic tools for AirBnb</h2>
 						<div id="search">
 							<form action="#">
-								<div class="form-group">
-									<input type="text" class="form-control" id="location_zip" placeholder="Type in your location zip code here">
-								</div>
-								<div class="form-group">
-									<input type="text" class="form-control" id="arrival" placeholder="arrival date yyyy-mm-dd">
-								</div>
-								<div class="form-group">
-									<input type="text" class="form-control" id="departure" placeholder="departure date yyyy-mm-dd">
-								</div>
-								<div class="form-group">
-									<input type="submit" value="Search" class="btn btn-primary btn-md" onclick="onSubmit()">
-								</div>
+                                <p>Compare the price difference between places with certain amenties</p>
+                                <p>Keywords: "wifi" "parking" "kitchen" "pet_friendly" "washer" "dryer"</p>
+                                <p>Second blank: True or False</p>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+        									<input type="text" class="form-control" id="amenities_choice_one" placeholder="Type your choice">
+        								</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+        									<input type="text" class="form-control" id="tf" placeholder="True or false">
+        								</div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+        									<input type="submit" value="Compare" class="btn btn-primary btn-md" onclick="first()">
+        								</div>
+                                    </div>
+                                </div>
+
+                                <p>When are people most likely rent a house without Wifi in Iowa city?</p>
+                                <p>Keywords: "wifi" "parking" "kitchen" "pet_friendly" "washer" "dryer"</p>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+        									<input type="text" class="form-control" id="amenities_choice_two" placeholder="Type your choice">
+        								</div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+        									<input type="submit" value="Search" class="btn btn-primary btn-md" onclick="second()">
+        								</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+        									<input type="text" class="form-control" id="departure" placeholder="departure date yyyy-mm-dd">
+        								</div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+        									<input type="submit" value="Search" class="btn btn-primary btn-md" onclick="third()">
+        								</div>
+                                    </div>
+                                </div>
 							</form>
 						</div>
 					</div>
@@ -63,11 +99,14 @@
                         <div class="text-center">
                             <h2>This is AirBnb</h2>
                             <hr>
-                            <p>Please type in where you want to go and what dates your arrival and departure are. Enjoy your stay!</p>
+                            <div id="basket">
+                                <p>Your results will be displayed here</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script src="index.js"></script>
     </body>
 </html>
