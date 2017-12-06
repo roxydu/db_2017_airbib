@@ -58,12 +58,65 @@ var loadDataAsync = (key, callback) => {
 
 // this function forms the query from user input
 var queryFormation = (key, callback) => {
+    var key_arr = key.split('&');
+    console.log(key_arr);
+    var selector = key_arr[0];
+    var variable_one = key_arr[1] ? key_arr[1] : null;
+    var variable_two = key_arr[2] ? key_arr[2] : null;
+    var result = '';
     //TODO: form your query here
+    if(selector === 'A') {
+        if(variable_one === 'wifi' ||
+                variable_one === 'parking' ||
+                variable_one === 'kitchen' ||
+                variable_one === 'pet_friendly' ||
+                variable_one === 'washer' ||
+                variable_one === 'dryer') {
+            result = 'Select stars From Reviews R, givenTo GT \
+                    where R.reviewID=GT.reviewID and GT.HouseID in \
+                    (Select h.HouseID From House h, Amenities a \
+                        Where h.houseId=a.houseID and a.' + variable_one + '=' + variable_two + ')';
+        } else {
+            result = 'Select stars From Reviews R, givenTo GT \
+                    where R.reviewID=GT.reviewID and GT.HouseID in \
+                    (Select h.HouseID From House h, Amenities a \
+                        Where h.houseId=a.houseID and a.wifi=False)';
+        }
+    } else if(selector === 'B') {
+        result = 'Select Reservation.checkInDate \
+            From Reservation,receives,Host \
+            where Host.hostID=receives.hostID \
+            and Reservation.reservationID=receives.reservationID \
+            and Host.hostID in \
+            (Select distinct a.hostID \
+            From House h, Amenities a \
+            where h.hostID=a.hostId \
+            and h.houseAddress like "%Iowa City%" \
+            and h.houseID in \
+            (Select H1.HouseID \
+            From House H1, Amenities A \
+            Where H1.HouseID=A.HouseID \
+            and A.wifi=False))';
 
-    // MAGIC HAPPENS HERE
+    } else if(selector === 'C') {
+        result = 'Select Reservation.billAmount, Host.hostName \
+            From Host, Reservation, receives \
+            Where Host.HostID=receives.HostID \
+            and Reservation.reservationID=receives.reservationID \
+            and Host.HostID in \
+            (Select Host.HostId \
+            From Host,hostedBy \
+            Where Host.HostID=hostedBy.HostID \
+            and hostedBy.houseID in \
+            (Select House.houseID \
+            From House, hostedBy \
+            Where House.houseId=hostedBy.houseId \
+            and House.houseAddress like \'%Iowa City%\'\
+            ))';
 
-    // mock query
-    var result = "SELECT * FROM `Amenity`";
+    } else {
+        console.error('wrong selector');
+    }
 
     // no error handling for now
     callback(null, result);
