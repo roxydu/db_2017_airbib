@@ -4,7 +4,7 @@
 
 ### Group Member: Ruoxi Du, Thomas Han, Wei Gui, Zujun Liu
 
-#### website link: http://jiyuhan.github.io/db_2017_airbnb
+#### website link: https://jiyuhan.github.io/db_2017_airbib/
 
 ## Abstract
 
