@@ -18,4 +18,8 @@ Last, a website will use jQuery's ```jQuery.getScript()``` method or ```jQuery.g
 
 ## Usage
 
+```npm i```
+for Node.js server.
+Then to run the node server. Type ```node index.js``` under the file directory, or ```nodejs index.js``` if different version of Node.js is installed.
+
 ## Postmortem
