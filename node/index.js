@@ -3,7 +3,13 @@
 const mysql = require('mysql');
 
 // loading http module for tcp data transmission
-const http = require('http');
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync('certificate/thomas-key.pem'),
+  cert: fs.readFileSync('certificate/thomas-cert.pem')
+};
 
 // initialize mysql database object
 var connection = mysql.createConnection({
@@ -28,7 +34,7 @@ connection.connect(function(err) {
 
 // after making sure the database is working, then create server from the socket
 // and start listening on port 4000
-http.createServer((req, res) => {
+https.createServer(options, (req, res) => {
     res.writeHead(200, {'Content-Type': 'text/plain'});
 
     loadDataAsync(req.url.split('?')[1], (err, data) => {
