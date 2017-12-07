@@ -73,7 +73,7 @@ var second_catch = (data) => {
     console.log(JSON.stringify(data));
     var html = '';
     data.forEach((datum)=>{
-        html += '<h4>' + datum.checkInDate.split('T')[0] + '</h4>';
+        html += '<h4>' + datum.checkInDate.split('T')[0].split('-')[1] + '</h4>';
     });
     $('#basket').html(html);
 }
@@ -86,7 +86,7 @@ var third = () => {
 
 var third_catch = (data) => {
     console.log(JSON.stringify(data));
-    var html = ' <table class="text-center" style="width:100%">';
+    var html = ' <table class="text-center" style="width:100%"><tr><th>Billed Amount ($)</th><th>Host Name</th></tr>';
     data.forEach((datum)=>{
         html += '<tr><th>' + datum.billAmount + '</th><th>' + datum.hostName + '</th></tr>';
     });
