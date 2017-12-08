@@ -143,3 +143,38 @@ VALUES ('1', '1', '1', '1', '1', '1'),
 ('9', '5', '9', '2', '9', '9'),
 ('10', '4', '10', '4', '10', '10'),
 ('11', '1', '3', '2', '11', '10');
+
+Select stars From Reviews R, givenTo GT
+where R.reviewID=GT.reviewID and GT.HouseID in
+(Select h.HouseID From House h, Amenities a 
+Where h.houseId=a.houseID and a.wifi=False);
+
+Select Reservation.checkInDate
+From Reservation,receives,Host
+where Host.hostID=receives.hostID
+and Reservation.reservationID=receives.reservationID
+and Host.hostID in
+(Select distinct a.hostID
+From House h, Amenities a
+where h.hostID=a.hostId
+and h.houseAddress like "%Iowa City%"
+and h.houseID in
+(Select H1.HouseID
+From House H1, Amenities A
+Where H1.HouseID=A.HouseID
+and A.wifi=False));
+
+Select Reservation.billAmount, Host.hostName
+From Host, Reservation, receives
+Where Host.HostID=receives.HostID
+and Reservation.reservationID=receives.reservationID
+and Host.HostID in
+(Select Host.HostId
+From Host,hostedBy
+Where Host.HostID=hostedBy.HostID
+and hostedBy.houseID in
+(Select House.houseID
+From House, hostedBy
+Where House.houseId=hostedBy.houseId
+and House.houseAddress like '%Iowa City%'
+))

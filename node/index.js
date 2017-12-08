@@ -80,51 +80,51 @@ var queryFormation = (key, callback) => {
                     variable_one === 'washer' ||
                     variable_one === 'dryer') {
                 result = 'Select stars From Reviews R, givenTo GT \
-                        where R.reviewID=GT.reviewID and GT.HouseID in \
-                        (Select h.HouseID From House h, Amenities a \
-                            Where h.houseId=a.houseID and a.' + variable_one + '=' + variable_two + ')';
+                    where R.reviewID=GT.reviewID and GT.HouseID in \
+                    (Select h.HouseID From House h, Amenities a \
+                    Where h.houseId=a.houseID and a.' + variable_one + '=' + variable_two + ')';
             } else {
                 result = 'Select stars From Reviews R, givenTo GT \
-                        where R.reviewID=GT.reviewID and GT.HouseID in \
-                        (Select h.HouseID From House h, Amenities a \
-                            Where h.houseId=a.houseID and a.wifi=False)';
+                    where R.reviewID=GT.reviewID and GT.HouseID in \
+                    (Select h.HouseID From House h, Amenities a \
+                    Where h.houseId=a.houseID and a.wifi=False)';
             }
         } else if(selector === 'B') {
             if(variable_one === 'wifi' ||
-                    variable_one === 'parking' ||
-                    variable_one === 'kitchen' ||
-                    variable_one === 'pet_friendly' ||
-                    variable_one === 'washer' ||
-                    variable_one === 'dryer') {
-                result = 'Select Reservation.checkInDate \
-                    From Reservation,receives,Host \
-                    where Host.hostID=receives.hostID \
-                    and Reservation.reservationID=receives.reservationID \
-                    and Host.hostID in \
-                    (Select distinct a.hostID \
-                    From House h, Amenities a \
-                    where h.hostID=a.hostId \
-                    and h.houseAddress like "%Iowa City%" \
-                    and h.houseID in \
-                    (Select H1.HouseID \
-                    From House H1, Amenities A \
-                    Where H1.HouseID=A.HouseID \
-                    and A.' + variable_one + '=False))';
+                variable_one === 'parking' ||
+                variable_one === 'kitchen' ||
+                variable_one === 'pet_friendly' ||
+                variable_one === 'washer' ||
+                variable_one === 'dryer') {
+                result = 'Select distinct month(Reservation.checkInDate), year(Reservation.checkInDate) \
+                        From Reservation,receives,Host \
+                        where Host.hostID=receives.hostID \
+                        and Reservation.reservationID=receives.reservationID \
+                        and Host.hostID in \
+                        (Select distinct a.hostID \
+                        From House h, Amenities a \
+                        where h.hostID=a.hostId \
+                        and h.houseAddress like \"%Iowa City%\" \
+                        and h.houseID in \
+                        (Select H1.HouseID \
+                        From House H1, Amenities A \
+                        Where H1.HouseID=A.HouseID \
+                        and A.' + variable_one + '=False))';
             } else {
-                result = 'Select Reservation.checkInDate \
-                    From Reservation,receives,Host \
-                    where Host.hostID=receives.hostID \
-                    and Reservation.reservationID=receives.reservationID \
-                    and Host.hostID in \
-                    (Select distinct a.hostID \
-                    From House h, Amenities a \
-                    where h.hostID=a.hostId \
-                    and h.houseAddress like "%Iowa City%" \
-                    and h.houseID in \
-                    (Select H1.HouseID \
-                    From House H1, Amenities A \
-                    Where H1.HouseID=A.HouseID \
-                    and A.wifi=False))';
+                result = 'Select distinct month(Reservation.checkInDate), year(Reservation.checkInDate) \
+                        From Reservation,receives,Host \
+                        where Host.hostID=receives.hostID \
+                        and Reservation.reservationID=receives.reservationID \
+                        and Host.hostID in \
+                        (Select distinct a.hostID \
+                        From House h, Amenities a \
+                        where h.hostID=a.hostId \
+                        and h.houseAddress like \"%Iowa City%\" \
+                        and h.houseID in \
+                        (Select H1.HouseID \
+                        From House H1, Amenities A \
+                        Where H1.HouseID=A.HouseID \
+                        and A.wifi=False))';
             }
         }
         else {
@@ -132,7 +132,7 @@ var queryFormation = (key, callback) => {
         }
     }
     else if(key === 'C') {
-        result = 'Select Reservation.billAmount, Host.hostName \
+        result = 'Select Host.hostName, Sum(Reservation.billAmount) \
             From Host, Reservation, receives \
             Where Host.HostID=receives.HostID \
             and Reservation.reservationID=receives.reservationID \
@@ -144,7 +144,7 @@ var queryFormation = (key, callback) => {
             (Select House.houseID \
             From House, hostedBy \
             Where House.houseId=hostedBy.houseId \
-            and House.houseAddress like \'%Iowa City%\'\
+            and House.houseAddress like \'%Iowa City%\' \
             ))';
     } else {
         console.error('wrong selector');
