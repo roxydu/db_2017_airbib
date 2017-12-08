@@ -82,7 +82,7 @@ var second_catch = (data) => {
     console.log(JSON.stringify(data));
     var html = '<h3>The homes without ' + variable_one + ' are still able to be rent out in the following months: </h3>';
     data.forEach((datum)=>{
-        var monthNumber = parseInt(datum.checkInDate.split('T')[0].split('-')[1]) - 1;
+        var monthNumber = parseInt(datum['month(Reservation.checkInDate)']) - 1;
         if(!monthRepeat[monthNumber]) {
             monthRepeat[monthNumber] = true;
             html += '<h4>' + monthNames[monthNumber] + '</h4>';
@@ -102,7 +102,7 @@ var third_catch = (data) => {
     console.log(JSON.stringify(data));
     var html = ' <table class="text-center" style="width:100%"><tr><th>Billed Amount ($)</th><th>Host Name</th></tr>';
     data.forEach((datum)=>{
-        html += '<tr><th>' + datum.billAmount + '</th><th>' + datum.hostName + '</th></tr>';
+        html += '<tr><th>' + datum['Sum(Reservation.billAmount)'] + '</th><th>' + datum.hostName + '</th></tr>';
     });
     html += '</table>';
     $('#basket').html(html);
