@@ -310,6 +310,8 @@ From House H1, Amenities A
 Where H1.HouseID=A.HouseID
 and A.wifi=False));
 
+USE airbnb;
+
 Select Host.hostName, Sum(Reservation.billAmount) 
 From Host, Reservation, receives
 Where Host.HostID=receives.HostID

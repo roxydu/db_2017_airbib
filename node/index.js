@@ -145,7 +145,7 @@ var queryFormation = (key, callback) => {
             From House, hostedBy \
             Where House.houseId=hostedBy.houseId \
             and House.houseAddress like \'%Iowa City%\' \
-            ))';
+            )) group by Host.hostName;';
     } else {
         console.error('wrong selector');
     }
